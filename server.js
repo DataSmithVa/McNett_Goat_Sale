@@ -10,12 +10,7 @@ const app = express();
 app.use(express.json({ extended: false }));
 
 // Define Routes
-// app.use('/api/applications', require('./routes/applications'));
-// app.use('/api/troubleTickets', require('./routes/troubleTickets'));
-// app.use('/api/newsletter', require('./routes/newsletter'));
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/users', require('./routes/users'));
-// app.use('/api/serviceArea', require('./routes/serviceArea'));
+app.use('/api/soldLot', require('./routes/soldLot'));
 
 // Serve Static Assets in Production
 // if (process.env.NODE_ENV === 'production') {
