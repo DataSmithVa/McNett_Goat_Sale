@@ -1,6 +1,7 @@
 // Dependancies
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
 
 // Model
 const SoldLot = require('../models/SoldLot');
@@ -18,49 +19,36 @@ router.get('/', async (req, res) => {
       date: -1,
     });
     res.status(200).json(soldLot);
-    console.log(req.status);
+    console.log('GET all lot sales.');
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
   }
 });
 
-// TODO everything below this line
-// @route   GET api/troubleTickets/:id
-// @desc    Get a Trouble Ticket
-// @access  Private
-router.get('/:id', auth, async (req, res) => {
-  if (req.user.role === 'admin' || req.user.role === 'employee') {
-    try {
-      const troubleTicket = await Trouble.findById(req.params.id);
-      if (!troubleTicket)
-        return res.status(404).json({ msg: 'Ticket Not Found!' });
-      res.json(troubleTicket);
-      console.log(`${req.user.name} has accessed trouble ticket database.`);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ msg: 'Server Error' });
-    }
-  } else {
-    res.status(403).json({ msg: 'Not Authorized...' });
-    console.log(
-      `${req.user.name} tried to access trouble ticket: ${req.params.id}.`
-    );
+// @route   GET api/soldLot/:id
+// @desc    Get a sold lots info
+// @access  Public
+router.get('/:id', async (req, res) => {
+  try {
+    const soldLot = await SoldLot.findById(req.params.id);
+    if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
+    res.json(soldLot);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
 
-// @route   POST api/troubleTickets
-// @desc    Submit a Trouble Ticket
+// @route   POST api/soldLot
+// @desc    Submit a sold lots info
 // @access  Public
 router.post(
   '/',
   [
-    check('firstName', 'Please add a first name').not().isEmpty(),
-    check('lastName', 'Please add a last name').not().isEmpty(),
-    check('address', 'Please add a valid address').not().isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check('contact', 'Please add a contact number').not().isEmpty(),
-    check('notes', 'Please add a description of your issue').not().isEmpty(),
+    check('lotNumber', 'Please add a lot number').not().isEmpty(),
+    check('bidderNumber', 'Please add the bidder number').not().isEmpty(),
+    check('salePrice', 'Please add the sale price').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -68,35 +56,34 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { firstName, lastName, address, email, contact, notes } = req.body;
+    const { lotNumber, bidderNumber, salePrice, isPaid, date } = req.body;
 
     try {
-      let troubleTicket = await Trouble.findOne({ email });
+      let soldLot = await SoldLot.findOne({ lotNumber });
 
-      if (troubleTicket) {
-        res.status(400).json({ msg: 'Application already exists' });
+      if (soldLot) {
+        res.status(400).json({ msg: 'Lot Sale has already ' });
       }
 
-      troubleTicket = new Trouble({
-        firstName,
-        lastName,
-        address,
-        email,
-        contact,
-        notes,
+      soldLot = new SoldLot({
+        lotNumber,
+        bidderNumber,
+        salePrice,
+        isPaid,
+        date,
       });
 
-      await troubleTicket.save();
+      await soldLot.save();
 
       const payload = {
-        troubleTicket: {
-          id: troubleTicket.id,
+        soldLot: {
+          id: soldLot.id,
         },
       };
 
-      if (troubleTicket) {
-        res.status(200).json({ msg: 'Trouble Ticket has been submitted!' });
-        console.log('Trouble ticket submitted. ');
+      if (soldLot) {
+        res.status(200).json({ msg: 'Lot sale has been submitted!' });
+        console.log('lot sale submitted. ');
       }
     } catch (err) {
       console.error(err.message);
@@ -106,29 +93,53 @@ router.post(
   }
 );
 
-// @route   DELETE api/troubleTicket/:id
-// @desc    Delete a Trouble Ticket
-// @access  Private
-router.delete('/:id', auth, async (req, res) => {
-  if (req.user.role === 'admin' || req.user.role === 'employee') {
-    try {
-      let troubleTicket = await Trouble.findById(req.params.id);
-      if (!troubleTicket)
-        return res.status(404).json({ msg: 'TroubleTicket Not Found!' });
-      await Trouble.findByIdAndRemove(req.params.id);
-      res.json({ msg: 'Trouble Ticket Removed' });
-      console.log(
-        `${req.user.name} removed trouble ticket for ${troubleTicket.firstName} ${troubleTicket.lastName}.`
-      );
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ msg: 'Server Error' });
-    }
-  } else {
-    res.status(403).json({ msg: 'Not Authorized!' });
-    console.log(
-      `${req.user.name} tried to delete trouble ticket: ${req.params.id}.`
+// @route   PUT api/soldLot/:id
+// @desc    Update a lot sale
+// @access  Pubic
+router.put('/:id', async (req, res) => {
+  const { lotNumber, bidderNumber, salePrice, isPaid } = req.body;
+  // Build a lot sale object
+  const soldLotFields = {};
+  if (lotNumber) {
+    soldLotFields.lotNumber = lotNumber;
+  }
+  if (bidderNumber) {
+    soldLotFields.bidderNumber = bidderNumber;
+  }
+  if (salePrice) {
+    soldLotFields.salePrice = salePrice;
+  }
+  if (isPaid) {
+    soldLotFields.isPaid = isPaid;
+  }
+  try {
+    let soldLot = await SoldLot.findById(req.params.id);
+    if (!soldLot) return res.status(404).json({ msg: 'Lot Sale Not Found!' });
+    soldLot = await SoldLot.findByIdAndUpdate(
+      req.params.id,
+      { $set: soldLotFields },
+      { new: true }
     );
+    res.status(200).json(soldLot);
+    console.log('Lot sale has been updated.');
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   DELETE api/soldLot/:id
+// @desc    Delete a lot sale
+// @access  Public
+router.delete('/:id', async (req, res) => {
+  try {
+    let soldLot = await SoldLot.findById(req.params.id);
+    if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
+    await SoldLot.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msg: 'Lot Sale Removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
 

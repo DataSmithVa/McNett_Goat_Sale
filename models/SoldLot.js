@@ -15,6 +15,7 @@ const SoldLotSchema = mongoose.Schema({
   },
   isPaid: {
     type: Boolean,
+    required: true,
   },
   date: {
     type: Date,
