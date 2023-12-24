@@ -34,6 +34,7 @@ router.get('/:id', async (req, res) => {
     const soldLot = await SoldLot.findById(req.params.id);
     if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
     res.json(soldLot);
+    console.log('GET a lot sale.');
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
@@ -62,7 +63,8 @@ router.post(
       let soldLot = await SoldLot.findOne({ lotNumber });
 
       if (soldLot) {
-        res.status(400).json({ msg: 'Lot Sale has already ' });
+        res.status(400).json({ msg: 'Lot already exists' });
+        console.log('lot already exists.');
       }
 
       soldLot = new SoldLot({
@@ -114,7 +116,8 @@ router.put('/:id', async (req, res) => {
   }
   try {
     let soldLot = await SoldLot.findById(req.params.id);
-    if (!soldLot) return res.status(404).json({ msg: 'Lot Sale Not Found!' });
+    if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
+    console.log('Lot Not Found!');
     soldLot = await SoldLot.findByIdAndUpdate(
       req.params.id,
       { $set: soldLotFields },
@@ -135,8 +138,10 @@ router.delete('/:id', async (req, res) => {
   try {
     let soldLot = await SoldLot.findById(req.params.id);
     if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
+    console.log('Lot Not Found!');
     await SoldLot.findByIdAndDelete(req.params.id);
-    res.status(200).json({ msg: 'Lot Sale Removed' });
+    res.status(200).json({ msg: 'Lot Removed' });
+    console.log('Lot removed!');
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
