@@ -1,10 +1,16 @@
 // Dependancies
 import React from 'react';
 
-// Components
+// Component Imports
+import Routes from '../layout/Routes';
 
+// Component
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Routes />
+    </div>
+  );
 };
 
 export default Home;

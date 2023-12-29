@@ -1,0 +1,35 @@
+// Imports
+@import './Config.scss';
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: $primary-color;
+
+  .footer-logo {
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 5.5rem;
+    display: grid;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .footer-text-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.25rem;
+    font-family: $primary-font;
+    color: $light-neutral-color;
+    text-align: center;
+
+    .footer-text-header {
+      font-size: 0.8rem;
+    }
+
+    .footer-text {
+      font-size: 0.6rem;
+    }
+  }
+}

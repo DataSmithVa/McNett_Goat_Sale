@@ -2,36 +2,14 @@
 @import './Config.scss';
 
 .nav-container {
-  height: 10rem;
+  margin: 0 auto;
   display: grid;
-  padding: 0 20%;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
   background-color: $primary-color;
 
-  .nav-logo-container {
+  .nav-logo {
     margin: 0 auto;
     padding: 1rem;
-
-    .nav-logo {
-      max-width: 50%;
-      height: 80%;
-      border-radius: 50%;
-    }
-  }
-
-  .nav-links {
-    display: none;
-    margin: 0 auto;
-    display: grid;
-    gap: 75%;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-
-    .link {
-      text-decoration: none;
-      font-size: 1.2rem;
-      color: $light-neutral-color;
-    }
+    max-width: 8rem;
+    border-radius: 50%;
   }
 }

@@ -21,4 +21,6 @@ the frontend.
 
     * Test routes and alerts
 
+    * Test for desktop responciveness
+
 // Known Bugs //
