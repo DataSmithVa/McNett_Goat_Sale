@@ -11,9 +11,7 @@ the frontend.
 
     // Backend //
 
-    * Update server response log messages.
-
-    * Fix known Bugs
+    * No To-Dos at this time
 
     // Frontend //
 
@@ -24,6 +22,3 @@ the frontend.
     * Test routes and alerts
 
 // Known Bugs //
-
-- Will submit duplicate sales lots even though displaying the correct
-  error message.

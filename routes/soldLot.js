@@ -63,6 +63,7 @@ router.post(
 
       if (soldLot) {
         res.status(400).json({ msg: 'Lot Sale has already ' });
+        return;
       }
 
       soldLot = new SoldLot({
@@ -137,6 +138,7 @@ router.delete('/:id', async (req, res) => {
     if (!soldLot) return res.status(404).json({ msg: 'Lot Not Found!' });
     await SoldLot.findByIdAndDelete(req.params.id);
     res.status(200).json({ msg: 'Lot Sale Removed' });
+    console.log('Lot sale removed!');
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server Error' });
