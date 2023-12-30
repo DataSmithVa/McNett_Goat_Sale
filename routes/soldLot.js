@@ -62,7 +62,8 @@ router.post(
       let soldLot = await SoldLot.findOne({ lotNumber });
 
       if (soldLot) {
-        res.status(400).json({ msg: 'Lot Sale has already ' });
+        res.status(400).json({ msg: 'Lot Sale already exists' });
+        console.log('Failed to submit... Lot sale already exists!');
         return;
       }
 

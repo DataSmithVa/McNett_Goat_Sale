@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Component Imports
 import Nav from './components/layout/Nav';
 import Home from './components/pages/Home';
+import Clerk from './components/pages/Clerk';
 import Footer from './components/layout/Footer';
 
 // State - Context
@@ -23,7 +24,7 @@ function App() {
           <Nav />
           <Routes>
             <Route path='/' element={<Home />} />
-            {/* <Route path='/clerk' element={<Clerk />} /> */}
+            <Route path='/clerk' element={<Clerk />} />
             {/* <Route path='/cashier' element={<Cashier />} /> */}
           </Routes>
           <Footer />

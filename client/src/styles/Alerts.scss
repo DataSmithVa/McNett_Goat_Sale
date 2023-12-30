@@ -1,0 +1,53 @@
+@import './Config.scss';
+
+.alert-regular {
+  padding: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.95;
+  background: $light-neutral-color;
+  color: #333;
+  font-family: $secondary-font;
+  text-align: center;
+}
+
+.alert-rounded {
+  padding: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.95;
+  background: $light-neutral-color;
+  color: #333;
+  font-family: $secondary-font;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.alert-primary {
+  background: $primary-color;
+  color: #fff;
+}
+
+.alert-light {
+  background: $light-neutral-color;
+  color: #333;
+}
+
+.alert-dark {
+  background: $dark-neutral-color;
+  color: #fff;
+}
+
+.alert-danger {
+  background: $danger;
+  color: #fff;
+}
+
+.alert-success {
+  background: $success;
+  color: #000;
+}
+
+.alert-white {
+  background: #fff;
+  color: #333;
+  border: #ccc solid 1px;
+}
