@@ -1,0 +1,36 @@
+// Imports
+@import './Config.scss';
+
+.list-header {
+  margin: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $darker-primary-color;
+  text-align: center;
+  line-height: 1.75em;
+}
+
+.refresh-btn {
+  margin: 0 2rem;
+  min-height: 2rem;
+  position: relative;
+  left: 75%;
+}
+
+.list-container {
+  display: none;
+  margin: 2rem;
+  padding: 2rem;
+  background-color: $dark-neutral-color;
+  border-radius: 1rem;
+
+  .lot-sale-container {
+    .lot-sale-edit-container {
+      .edit-btn-container {
+        img {
+          max-height: 2rem;
+        }
+      }
+    }
+  }
+}
