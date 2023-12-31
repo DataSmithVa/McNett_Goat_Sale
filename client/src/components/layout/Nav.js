@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import '../../styles/Nav.scss';
 
 // Assets
-import logo from '../../assets/images/McNettLogo.jpg';
+import logo from '../../assets/images/McNett_Farms_Logo.png';
 
 const Nav = () => {
   return (

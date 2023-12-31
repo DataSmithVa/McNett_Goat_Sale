@@ -17,10 +17,6 @@ the frontend.
 
     * Finish pages and components
 
-    * Attach to the Backend
-
-    * Test routes and alerts
-
-    * Test for desktop responciveness
+        * PUT method on List page needs to be implemented
 
 // Known Bugs //

@@ -10,7 +10,7 @@ const SoldLotSchema = mongoose.Schema({
     required: true,
   },
   salePrice: {
-    type: Number,
+    type: String,
     required: true,
   },
   isPaid: {

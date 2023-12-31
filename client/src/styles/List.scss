@@ -20,17 +20,101 @@
 .list-container {
   display: none;
   margin: 2rem;
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: $dark-neutral-color;
-  border-radius: 1rem;
+  border-radius: 2rem;
 
   .lot-sale-container {
-    .lot-sale-edit-container {
-      .edit-btn-container {
-        img {
-          max-height: 2rem;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    gap: 1.5rem;
+
+    .lot-sale-info-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      .lot-number-container {
+        display: grid;
+        gap: 0.5rem;
+
+        .lot-number-label {
+          font-size: 0.8rem;
+          font-weight: 200;
+        }
+
+        .lot-number-data {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+
+      .bidder-number-container {
+        display: grid;
+        gap: 0.5rem;
+
+        .bidder-number-label {
+          font-size: 0.8rem;
+          font-weight: 200;
+        }
+
+        .bidder-number-data {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+
+      .sale-price-container {
+        display: grid;
+        gap: 0.5rem;
+
+        .sale-price-label {
+          font-size: 0.8rem;
+          font-weight: 200;
+        }
+
+        .sale-price-data {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+
+      .is-paid-container {
+        display: grid;
+        gap: 0.5rem;
+
+        .is-paid-label {
+          font-size: 0.8rem;
+          font-weight: 200;
+        }
+
+        .is-paid-data {
+          font-size: 1.2rem;
+          font-weight: 700;
         }
       }
     }
+
+    .lot-sale-edit-container {
+      display: grid;
+      grid-template-columns: 1fr 0.5fr;
+      align-items: last baseline;
+      justify-content: space-between;
+
+      .date-label {
+        font-size: 0.6rem;
+      }
+
+      .edit-btn {
+        max-height: 2rem;
+        position: relative;
+        left: 70%;
+      }
+    }
+  }
+
+  .lot-sale-hr {
+    margin-bottom: 1.5rem;
+    border: 1px solid $darker-primary-color;
   }
 }

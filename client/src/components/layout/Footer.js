@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import '../../styles/Footer.scss';
 
 // Assets
-import logo from '../../assets/images/McNettLogo.jpg';
+import logo from '../../assets/images/Goat_Illustration.png';
 
 // Component Imports
 

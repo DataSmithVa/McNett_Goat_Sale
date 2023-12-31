@@ -7,9 +7,9 @@
   background-color: $primary-color;
 
   .nav-logo {
-    margin: 0 auto;
-    padding: 1rem;
+    margin: 1rem auto;
     max-width: 8rem;
-    border-radius: 50%;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 20px $accent-color;
   }
 }
