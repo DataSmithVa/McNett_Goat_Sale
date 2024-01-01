@@ -10,8 +10,7 @@ import xMark from '../../assets/icons/x-mark.svg';
 
 // Component
 const EditForm = (props) => {
-  console.log(props);
-
+  // console.log(props.data._id);
   // State
   const [lotUpdates, setLotUpdates] = useState();
 
@@ -33,15 +32,14 @@ const EditForm = (props) => {
 
   // Close Modal
   const modalClose = () => {
-    const modal = document.getElementById('put-modal');
-    modal.close();
+    const modal = document.getElementsByName(`${props.data._id}`);
+    modal[0].close();
   };
 
   // Update lot sale // PUT Method
   const formSubmit = (formData) => {
-    console.log(props.data._id);
     const {} = axios
-      .put(`/api/soldLot/${props._id}`, formData, {
+      .put(`/api/soldLot/${props.data._id}`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -57,12 +55,13 @@ const EditForm = (props) => {
   // Utilities
   const validateAndSubmit = (e) => {
     // e.preventDefault();
+    console.log(lotUpdates);
     formSubmit(lotUpdates);
     modalClose();
   };
 
   return (
-    <dialog id='put-modal'>
+    <dialog id='put-modal' name={props.data._id}>
       <img
         src={xMark}
         alt='close button logo'

@@ -18,8 +18,10 @@ const ListItem = (props) => {
 
   // Open the edit modal for PUT method
   const openEditModal = () => {
-    const modal = document.getElementById('put-modal');
-    modal.showModal();
+    console.log(props.data._id);
+    const modal = document.getElementsByName(`${props.data._id}`);
+    console.log(modal[0]);
+    modal[0].showModal();
   };
 
   // Utilities
@@ -64,7 +66,7 @@ const ListItem = (props) => {
         />
       </div>
       <hr className='lot-sale-hr' />
-      <EditForm data={props.data} />
+      <EditForm data={props.data} key={props.data._id} />
     </div>
   );
 };

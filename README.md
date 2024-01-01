@@ -17,8 +17,10 @@ the frontend.
 
     * Finish pages and components
 
-        * PUT method needs bug fixes
+        * PUT method finished
 
 // Known Bugs //
 
-    * Wont update older database items
+// Patch Notes
+
+    * Apperent fix. all lot sales are updating now with edit option.
