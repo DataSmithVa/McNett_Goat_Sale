@@ -24,6 +24,7 @@ const Form = () => {
     bidderNumber: '',
     salePrice: '',
     isPaid: false,
+    paymentMethod: '',
   });
 
   const updateFormInfo = (e) => {

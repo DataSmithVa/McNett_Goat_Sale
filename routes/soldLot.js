@@ -56,7 +56,8 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { lotNumber, bidderNumber, salePrice, isPaid, date } = req.body;
+    const { lotNumber, bidderNumber, salePrice, isPaid, paymentMethod, date } =
+      req.body;
 
     try {
       let soldLot = await SoldLot.findOne({ lotNumber });
@@ -72,6 +73,7 @@ router.post(
         bidderNumber,
         salePrice,
         isPaid,
+        paymentMethod,
         date,
       });
 
@@ -99,7 +101,8 @@ router.post(
 // @desc    Update a lot sale
 // @access  Pubic
 router.put('/:id', async (req, res) => {
-  const { lotNumber, bidderNumber, salePrice, isPaid } = req.body;
+  const { lotNumber, bidderNumber, salePrice, isPaid, paymentMethod } =
+    req.body;
   // Build a lot sale object
   const soldLotFields = {};
   if (lotNumber) {
@@ -113,6 +116,9 @@ router.put('/:id', async (req, res) => {
   }
   if (isPaid) {
     soldLotFields.isPaid = isPaid;
+  }
+  if (paymentMethod) {
+    soldLotFields.paymentMethod = paymentMethod;
   }
   try {
     let soldLot = await SoldLot.findById(req.params.id);

@@ -17,6 +17,8 @@ the frontend.
 
     * Finish pages and components
 
-        * PUT method on List page needs to be implemented
+        * PUT method needs bug fixes
 
 // Known Bugs //
+
+    * Wont update older database items

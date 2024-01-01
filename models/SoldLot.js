@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const SoldLotSchema = mongoose.Schema({
   lotNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   bidderNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   salePrice: {
@@ -16,6 +16,9 @@ const SoldLotSchema = mongoose.Schema({
   isPaid: {
     type: Boolean,
     required: true,
+  },
+  paymentMethod: {
+    type: String,
   },
   date: {
     type: Date,
