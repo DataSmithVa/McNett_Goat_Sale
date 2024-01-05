@@ -11,13 +11,17 @@ the frontend.
 
     // Backend //
 
-    * No To-Dos at this time
+    * Add saleNotes to DB Model
 
     // Frontend //
 
     * Finish pages and components
 
-        * PUT method finished
+        * isPaid value custom styleing
+
+        * paymentMethod addition to EditForm
+
+        * saleNotes aadition to EditForm
 
 // Known Bugs //
 
