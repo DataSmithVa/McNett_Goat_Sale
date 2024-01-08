@@ -11,7 +11,7 @@ the frontend.
 
     // Backend //
 
-    * Add saleNotes to DB Model
+    * Add saleNotes to DB Model and update routes to reflect
 
     // Frontend //
 
@@ -23,8 +23,16 @@ the frontend.
 
         * saleNotes aadition to EditForm
 
+        * Add DELETE Method back
+
 // Known Bugs //
 
 // Patch Notes
 
     * Apperent fix. all lot sales are updating now with edit option.
+
+// Road Map
+
+    * Add sorting filter to the sales list
+
+    * Add auto sorting function based on isPaid value
