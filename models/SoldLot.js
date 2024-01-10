@@ -20,6 +20,9 @@ const SoldLotSchema = mongoose.Schema({
   paymentMethod: {
     type: String,
   },
+  saleNotes: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,

@@ -25,6 +25,7 @@ const Form = () => {
     salePrice: '',
     isPaid: false,
     paymentMethod: '',
+    saleNotes: '',
   });
 
   const updateFormInfo = (e) => {

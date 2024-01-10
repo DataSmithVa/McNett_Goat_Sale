@@ -1,6 +1,7 @@
 // Dependancies
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import AlertContext from '../../context/alert/alertContext';
 
 // Styles
 import '../../styles/EditForm.scss';
@@ -10,7 +11,11 @@ import xMark from '../../assets/icons/x-mark.svg';
 
 // Component
 const EditForm = (props) => {
-  // console.log(props.data._id);
+  // Context
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
+
   // State
   const [lotUpdates, setLotUpdates] = useState();
 
@@ -18,15 +23,6 @@ const EditForm = (props) => {
   const updateFormInfo = (e) => {
     setLotUpdates({ ...lotUpdates, [e.target.name]: e.target.value });
   };
-
-  // useEffect
-  //   useEffect(() => {
-  //     const spreadState = () => {
-  //       setLotUpdates({ ...props.data });
-  //     };
-  //     spreadState();
-  //     console.log(lotUpdates);
-  //   }, []);
 
   // Functions
 
@@ -45,7 +41,11 @@ const EditForm = (props) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        setAlert(
+          `Lot number: ${res.data.lotNumber} has been updated`,
+          'success',
+          'regular'
+        );
       })
       .catch((err) => {
         console.error(err);
@@ -53,9 +53,7 @@ const EditForm = (props) => {
   };
 
   // Utilities
-  const validateAndSubmit = (e) => {
-    // e.preventDefault();
-    console.log(lotUpdates);
+  const validateAndSubmit = () => {
     formSubmit(lotUpdates);
     modalClose();
   };
@@ -69,7 +67,10 @@ const EditForm = (props) => {
         onClick={modalClose}
       />
       <form className='put-modal-form'>
-        <h5>{props.data._id}</h5>
+        <div className='id-container'>
+          <h6 className='id-header'>Lot Id:</h6>
+          <h5 className='id-data'>{props.data._id}</h5>
+        </div>
         <div className='input-container'>
           <h5 className='input-header'>Lot Number</h5>
           <h3 className='input-data'>{props.data.lotNumber}</h3>
@@ -91,7 +92,7 @@ const EditForm = (props) => {
         <div className='input-container'>
           <h5 className='input-header'>Payment Status</h5>
           <div className='checkbox-container'>
-            <label htmlFor='unpaid'>
+            <label htmlFor='unpaid' className='checkbox-label'>
               <input
                 onChange={updateFormInfo}
                 type='checkbox'
@@ -100,9 +101,9 @@ const EditForm = (props) => {
                 value='false'
                 className='form-inputs'
               />
-              Unpaid
+              {' Unpaid'}
             </label>
-            <label htmlFor='paid'>
+            <label htmlFor='paid' className='checkbox-label'>
               <input
                 onChange={updateFormInfo}
                 type='checkbox'
@@ -111,7 +112,45 @@ const EditForm = (props) => {
                 value='true'
                 className='form-inputs'
               />
-              Paid
+              {' Paid'}
+            </label>
+          </div>
+        </div>
+        <div className='input-container'>
+          <h5 className='input-header'>Payment Method</h5>
+          <div className='checkbox-container'>
+            <label htmlFor='cash' className='checkbox-label'>
+              <input
+                onChange={updateFormInfo}
+                type='checkbox'
+                name='paymentMethod'
+                id='cash'
+                value='cash'
+                className='form-inputs'
+              />
+              {' Cash'}
+            </label>
+            <label htmlFor='check' className='checkbox-label'>
+              <input
+                onChange={updateFormInfo}
+                type='checkbox'
+                name='paymentMethod'
+                id='check'
+                value='check'
+                className='form-inputs'
+              />
+              {' Check'}
+            </label>
+            <label htmlFor='card' className='checkbox-label'>
+              <input
+                onChange={updateFormInfo}
+                type='checkbox'
+                name='paymentMethod'
+                id='card'
+                value='card'
+                className='form-inputs'
+              />
+              {' Card'}
             </label>
           </div>
         </div>

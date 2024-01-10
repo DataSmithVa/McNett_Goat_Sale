@@ -27,6 +27,7 @@ const List = () => {
   const fetchData = async () => {
     await axios.get('/api/soldLot').then((res) => {
       setFetchedData(res.data);
+      setAlert(`${res.data.length} lot sales loaded`, 'success', 'regular');
     });
   };
 
@@ -34,6 +35,7 @@ const List = () => {
     const fetchData = async () => {
       await axios.get('/api/soldLot').then((res) => {
         setFetchedData(res.data);
+        setAlert(`${res.data.length} lot sales loaded`, 'success', 'regular');
       });
     };
     fetchData();

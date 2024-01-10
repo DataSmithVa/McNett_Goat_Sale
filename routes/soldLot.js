@@ -6,9 +6,7 @@ const { check, validationResult } = require('express-validator');
 // Model
 const SoldLot = require('../models/SoldLot');
 
-// Notes:
-
-// To-Dos:
+// Methods
 
 // @route   GET api/soldLot
 // @desc    Get All Sold Lots
@@ -56,8 +54,15 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { lotNumber, bidderNumber, salePrice, isPaid, paymentMethod, date } =
-      req.body;
+    const {
+      lotNumber,
+      bidderNumber,
+      salePrice,
+      isPaid,
+      paymentMethod,
+      saleNotes,
+      date,
+    } = req.body;
 
     try {
       let soldLot = await SoldLot.findOne({ lotNumber });
@@ -74,6 +79,7 @@ router.post(
         salePrice,
         isPaid,
         paymentMethod,
+        saleNotes,
         date,
       });
 
@@ -101,8 +107,14 @@ router.post(
 // @desc    Update a lot sale
 // @access  Pubic
 router.put('/:id', async (req, res) => {
-  const { lotNumber, bidderNumber, salePrice, isPaid, paymentMethod } =
-    req.body;
+  const {
+    lotNumber,
+    bidderNumber,
+    salePrice,
+    isPaid,
+    paymentMethod,
+    saleNotes,
+  } = req.body;
   // Build a lot sale object
   const soldLotFields = {};
   if (lotNumber) {
@@ -119,6 +131,9 @@ router.put('/:id', async (req, res) => {
   }
   if (paymentMethod) {
     soldLotFields.paymentMethod = paymentMethod;
+  }
+  if (saleNotes) {
+    soldLotFields.saleNotes = saleNotes;
   }
   try {
     let soldLot = await SoldLot.findById(req.params.id);
