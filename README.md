@@ -17,18 +17,17 @@ the frontend.
 
         * isPaid value custom styleing
 
-        * saleNotes addition to EditForm
-
-        * Add DELETE Method back
-
 // Known Bugs //
+
+    * Two alerts generated on cashier page load
 
 // Patch Notes //
 
-    * Added paymentMethod to EditForm and updated the Backend soldLot route
-    and model.
+    * Added the DELETE Method back and tested Method
 
-    * Added alerts to updated lot sales.
+    * Added DeleteForm component
+
+    * Changed alert timeout
 
 // Road Map //
 

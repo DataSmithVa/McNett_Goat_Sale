@@ -15,12 +15,37 @@
   min-height: 2rem;
   position: relative;
   left: 75%;
+
+  &:hover {
+    animation-name: rotate;
+    animation-iteration-count: 5;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+  }
 }
 
 .list-container {
-  // display: none;
   margin: 2rem;
   padding: 1.5rem;
   background-color: $dark-neutral-color;
   border-radius: 2rem;
+}
+
+@keyframes rotate {
+  0% {
+  }
+  25% {
+    transform: rotate(-25deg);
+  }
+
+  50% {
+    transform: rotate(25deg);
+  }
+
+  75% {
+    transform: rotate(-25deg);
+  }
+
+  100% {
+  }
 }

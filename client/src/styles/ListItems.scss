@@ -2,8 +2,9 @@
 @import './Config.scss';
 
 .lot-sale-container {
+  margin: 2rem 0;
   display: grid;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 2fr 0.75fr 0.25fr;
   gap: 1.5rem;
 
   .lot-sale-info-container {
@@ -68,18 +69,62 @@
       .is-paid-data {
         font-size: 1.2rem;
         font-weight: 700;
+      }
+
+      .unpaid {
+        font-size: 1.2rem;
+        font-weight: 700;
         color: $danger;
       }
 
-      .success {
+      .paid {
+        font-size: 1.2rem;
+        font-weight: 700;
         color: $success;
       }
+    }
+
+    .payment-method-container {
+      display: grid;
+      gap: 0.5rem;
+
+      .payment-method-label {
+        font-size: 0.8rem;
+        font-weight: 200;
+      }
+
+      .payment-method-data {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .lot-sale-notes-container {
+    display: grid;
+    gap: 1rem;
+
+    .lot-sale-notes-header {
+      font-size: 0.8rem;
+      font-weight: 200;
+      // color: $darker-primary-color;
+    }
+
+    .lot-sale-notes-data {
+      padding: 1rem;
+      resize: none;
+      font-family: $primary-font;
+      font-weight: light;
+      font-size: 0.8rem;
+      background-color: $neutral-color;
+      border: none;
+      border-radius: 1rem;
     }
   }
 
   .lot-sale-edit-container {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
+    grid-template-columns: 1fr 0.5fr 0.5fr;
     align-items: last baseline;
     justify-content: space-between;
 
@@ -88,6 +133,12 @@
     }
 
     .edit-btn {
+      max-height: 2rem;
+      position: relative;
+      // left: 60%;
+    }
+
+    .delete-btn {
       max-height: 2rem;
       position: relative;
       // left: 60%;
@@ -151,6 +202,7 @@
           padding: 0.75rem 1rem;
           border: none;
           border-radius: 0.5rem;
+          resize: none;
         }
 
         .checkbox-container {
@@ -185,6 +237,63 @@
   }
 
   #put-modal:focus-visible {
+    outline: none;
+    border: none;
+  }
+
+  #delete-modal {
+    margin: auto;
+    padding: 2rem;
+    width: 80%;
+    background-color: $light-neutral-color;
+    border: none;
+    border-radius: 2rem;
+
+    .delete-modal-container {
+      display: grid;
+      gap: 1.5rem;
+
+      .delete-modal-data {
+        margin: 0 auto;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .delete-modal-header {
+        margin: 0 auto;
+      }
+
+      .btn-container {
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        .delete-btn-no {
+          margin: 0 auto;
+          padding: 0.75rem 1rem;
+          width: 40%;
+          border: none;
+          background-color: $danger;
+          border-radius: 2rem;
+          color: #fff;
+        }
+
+        .delete-btn-yes {
+          margin: 0 auto;
+          padding: 0.75rem 1rem;
+          width: 40%;
+          border: none;
+          background-color: $success;
+          border-radius: 2rem;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  #delete-modal:focus-visible {
     outline: none;
     border: none;
   }

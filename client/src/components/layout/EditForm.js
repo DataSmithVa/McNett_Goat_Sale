@@ -41,11 +41,7 @@ const EditForm = (props) => {
         },
       })
       .then((res) => {
-        setAlert(
-          `Lot number: ${res.data.lotNumber} has been updated`,
-          'success',
-          'regular'
-        );
+        location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -87,6 +83,7 @@ const EditForm = (props) => {
             name='salePrice'
             id='sale-price'
             className='form-inputs'
+            placeholder='$0.00'
           />
         </div>
         <div className='input-container'>
@@ -125,7 +122,7 @@ const EditForm = (props) => {
                 type='checkbox'
                 name='paymentMethod'
                 id='cash'
-                value='cash'
+                value='Cash'
                 className='form-inputs'
               />
               {' Cash'}
@@ -136,7 +133,7 @@ const EditForm = (props) => {
                 type='checkbox'
                 name='paymentMethod'
                 id='check'
-                value='check'
+                value='Check'
                 className='form-inputs'
               />
               {' Check'}
@@ -147,12 +144,24 @@ const EditForm = (props) => {
                 type='checkbox'
                 name='paymentMethod'
                 id='card'
-                value='card'
+                value='Card'
                 className='form-inputs'
               />
               {' Card'}
             </label>
           </div>
+        </div>
+        <div className='input-container'>
+          <h5 className='input-header'>Sale Notes:</h5>
+          <textarea
+            onChange={updateFormInfo}
+            type='text'
+            name='saleNotes'
+            id='sale-notes'
+            className='form-inputs'
+            rows={5}
+            placeholder='Add notes here...'
+          />
         </div>
         <div className='btn-container'>
           <input
